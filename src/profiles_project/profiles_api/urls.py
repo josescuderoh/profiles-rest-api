@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import HelloAPIView
+from django.conf.urls import include
+from rest_framework.routers import DefaultRouter
+from . import views
+
+router = DefaultRouter()
+router.register('hello-viewset', views.HelloViewset, base_name='hello-viewset')
 
 urlpatterns = [
-    url(r'^hello-view/', HelloAPIView.as_view()),
+    url(r'^hello-view/', views.HelloAPIView.as_view()),
+    url(r'', include(router.urls))
 ]
