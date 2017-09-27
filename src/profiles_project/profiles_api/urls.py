@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.conf.urls import include
+from .views import HelloAPIView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('profiles_api.urls'))
+    url(r'^hello-view/', HelloAPIView.as_view()),
 ]
